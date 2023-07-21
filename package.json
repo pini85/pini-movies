@@ -1,0 +1,16 @@
+{
+  "name": "pini-movies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+   "start": "npm run -w client start & npm run -w server start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces":[
+    "client",
+    "server"
+  ]
+}

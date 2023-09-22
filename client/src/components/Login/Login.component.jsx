@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { setUser } from '../../redux/slices/user.slice.ts';
-import useGoogleLogin from 'hooks/useGoogleLogin';
-import Button from 'components/Button/Button';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../../redux/slices/user.slice.ts";
+import useGoogleLogin from "hooks/useGoogleLogin";
+import Button from "components/Button/Button";
 const Login = () => {
   let url =
-    process.env.NODE_ENV === 'production'
-      ? 'https://www.my-cheap-ass-server.link/api/auth/google/login'
-      : 'http://localhost:5000/api/auth/google/login';
+    process.env.NODE_ENV === "production"
+      ? "https://api.pinimovies.com/api/auth/google/login"
+      : "http://localhost:5000/api/auth/google/login";
 
   const { handleGoogle, error } = useGoogleLogin(url);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const handleLogOut = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     dispatch(setUser(null));
   };
 
@@ -28,13 +28,13 @@ const Login = () => {
         callback: handleGoogle,
       });
 
-      google.accounts.id.renderButton(document.getElementById('signUpDiv'), {
-        type: 'standard',
-        theme: 'outline',
-        size: 'large',
-        text: 'signin_with',
-        shape: 'pill',
-        locale: 'en',
+      google.accounts.id.renderButton(document.getElementById("signUpDiv"), {
+        type: "standard",
+        theme: "outline",
+        size: "large",
+        text: "signin_with",
+        shape: "pill",
+        locale: "en",
       });
     }
   }, [user]);

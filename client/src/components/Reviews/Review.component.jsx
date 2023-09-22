@@ -1,9 +1,9 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import ReviewsCarousel from 'components/ReviewsCarousel/ReviewsCarousel.component';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ReviewsCarousel from "components/ReviewsCarousel/ReviewsCarousel.component";
 
-import Carousel from 'components/Carousel/carousel.component';
-import * as S from './Reviews.styles';
+import Carousel from "components/Carousel/carousel.component";
+import * as S from "./Reviews.styles";
 
 const Reviews = ({ colors, reviews }) => {
   const renderReviews = () => {
@@ -21,8 +21,8 @@ const Reviews = ({ colors, reviews }) => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ width: '100%' }}
-        animate={{ width: '100%' }}
+        initial={{ width: "100%" }}
+        animate={{ width: "100%" }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >

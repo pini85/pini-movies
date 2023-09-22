@@ -1,14 +1,14 @@
-import axios from 'axios';
-import { store } from '../redux/configureStore';
-import { setUser } from '../redux/slices/user.slice';
+import axios from "axios";
+import { store } from "../redux/configureStore";
+import { setUser } from "../redux/slices/user.slice";
 
 let url;
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-  url = 'http://localhost:5000/';
+if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
+  url = "http://localhost:5000/";
 }
 
-if (process.env.NODE_ENV === 'production') {
-  url = 'https://www.my-cheap-ass-server.link/';
+if (process.env.NODE_ENV === "production") {
+  url = "https://api.pinimovies.com/";
 }
 
 const api = axios.create({
@@ -20,7 +20,7 @@ api.interceptors.request.use(
     // const { origin } = new URL(config.url);
     //
     // const allowedOrigins = [url];
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -33,8 +33,11 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (error.response.status === 401 && error.response.data.message === 'tokenExpired') {
-      localStorage.removeItem('token');
+    if (
+      error.response.status === 401 &&
+      error.response.data.message === "tokenExpired"
+    ) {
+      localStorage.removeItem("token");
       store.dispatch(setUser(null));
     }
 

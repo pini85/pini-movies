@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
-import { tmdbMovieSliderApi } from '../../apis/tmdbApi';
-import { highestRated, latestMovies } from 'utlis/apiTabObjects';
+import React, { useState } from "react";
+import { useQuery } from "react-query";
+import { tmdbMovieSliderApi } from "../../apis/tmdbApi";
+import { highestRated, latestMovies } from "utlis/apiTabObjects";
 
-import Carousel from 'components/Carousel/carousel.component';
-import Footer from 'layouts/Footer/Footer.component';
-import Options from 'components/Options/Options.component';
-import DisplayMovieList from 'components/DisplayMovieList/DisplayMovieList.jsx';
-import MovieSlider from 'components/MovieSlider/MovieSlider.component';
+import Carousel from "components/Carousel/carousel.component";
+import Options from "components/Options/Options.component";
+import DisplayMovieList from "components/DisplayMovieList/DisplayMovieList.jsx";
+import MovieSlider from "components/MovieSlider/MovieSlider.component";
 
-import * as S from './Home.styles';
+import * as S from "./Home.styles";
 
 const Home = () => {
   const [optionIndex, setOptionIndex] = useState(0);
@@ -26,11 +25,13 @@ const Home = () => {
     keepPreviousData: true,
   });
 
-  const { data: movies } = useQuery('movie-slider', tmdbMovieSliderApi);
+  const { data: movies } = useQuery("movie-slider", tmdbMovieSliderApi);
 
   const renderMovieSliders = () => {
     return movies.map((movie) => {
-      return <MovieSlider key={movie.id} movie={movie} movies={movies}></MovieSlider>;
+      return (
+        <MovieSlider key={movie.id} movie={movie} movies={movies}></MovieSlider>
+      );
     });
   };
 
@@ -60,7 +61,6 @@ const Home = () => {
         activeIndex={optionIndex}
       />
       {data && <DisplayMovieList data={data.results} />};
-      <Footer />
     </S.Container>
   );
 };

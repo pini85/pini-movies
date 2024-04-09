@@ -15,4 +15,5 @@ phases:
 artifacts:
   files:
     - '**/*'
+  name:"movie-app"
   base-directory: 'client/build'

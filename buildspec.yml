@@ -3,22 +3,13 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Navigating to server directory..."
       - cd server  # Change directory to the server folder
-      - echo "Installing dependencies..."
       - npm install  # Install dependencies
-  pre_build:
-    commands:
-      - echo "Pre-build steps..."
-  build:
-    commands:
-      - echo "Building the application..."
-      - npm run build  # Build the application
 
 artifacts:
   files:
-    - '**/*'  # Adjust this if you need to specify particular files or patterns
-  base-directory: 'server/dist'  # Adjust based on your build output directory
+    - '**/*'
+  base-directory: 'server'  # Set this to where your main application files are located
 
 cache:
   paths:

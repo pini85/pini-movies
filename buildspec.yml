@@ -3,17 +3,24 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing source NPM dependencies...
-      - cd client && npm install
+      - echo "Navigating to server directory..."
+      - cd server  # Change directory to the server folder
+      - echo "Installing dependencies..."
+      - npm install  # Install dependencies
   pre_build:
     commands:
-      - echo Build started on `date`
+      - echo "Pre-build steps..."
+      - npm run lint  # Optional: Run linter
   build:
     commands:
-      - echo Building the React App...
-      - npm run build
+      - echo "Building the application..."
+      - npm run build  # Build the application
+
 artifacts:
   files:
-    - '**/*'
-  name:"movie-app"
-  base-directory: 'client/build'
+    - '**/*'  # Adjust this if you need to specify particular files or patterns
+  base-directory: 'server/dist'  # Adjust based on your build output directory
+
+cache:
+  paths:
+    - 'server/node_modules/**/*'  # Cache the node_modules directory to speed up builds

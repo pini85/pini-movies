@@ -1,11 +1,10 @@
-import api from './api';
+import api from "./api";
 
 export const currentUser = async () => {
-  const data = await api.get('/api/auth/current_user');
+  const data = await api.get("/api/auth/current_user");
   return data.data;
 };
 export const saveMovie = (movie: any) => {
-  console.log({ movie });
   return api.post(`/api/movies/add`, { movie });
 };
 
@@ -53,13 +52,13 @@ export const getNewMoviesByCategory = async (
   categoryName: string,
   numberOfMovies = 14
 ) => {
-  return await api.post('/api/ai/generateMoviesByCategory', {
+  return await api.post("/api/ai/generateMoviesByCategory", {
     categoryName,
     numberOfMovies,
   });
 };
 export const getNewOwnCategory = async (input: string) => {
-  return await api.post('/api/ai/generateMovieCategoryByInput', {
+  return await api.post("/api/ai/generateMovieCategoryByInput", {
     input,
   });
 };

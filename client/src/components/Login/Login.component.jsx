@@ -15,7 +15,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const handleLogOut = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("authToken");
     dispatch(setUser(null));
   };
 

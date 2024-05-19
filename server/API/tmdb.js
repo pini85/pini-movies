@@ -8,7 +8,6 @@ const getTmdbWithId = async (id) => {
   return data;
 };
 const getMovieByTitle = async (title) => {
-  console.log("title", title);
   const { data } = await axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&query=${title}`
   );

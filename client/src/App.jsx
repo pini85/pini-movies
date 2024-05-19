@@ -13,7 +13,7 @@ const App = () => {
   const [authToken, setToken] = useState(localStorage.getItem("authToken"));
 
   const theme = useSelector((state) => state.ui.theme);
-
+  const userId = useSelector((state) => state.user?.user?._id);
   const dispatch = useDispatch();
   const { data: user } = useQuery("currentUser", currentUser, {
     enabled: !!authToken,

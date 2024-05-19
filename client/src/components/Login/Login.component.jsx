@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { setUser } from "../../redux/slices/user.slice.ts";
 import useGoogleLogin from "hooks/useGoogleLogin";
 import Button from "components/Button/Button";

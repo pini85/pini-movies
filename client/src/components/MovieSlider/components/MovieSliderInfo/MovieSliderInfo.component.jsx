@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import Button from 'components/Button/Button';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Button from "components/Button/Button";
 
-import * as S from './MovieSliderInfo.styles';
+import * as S from "./MovieSliderInfo.styles";
 
 const MovieSliderInfo = ({ movie, goToMovie }) => {
   const plotDetails = (plot) => {
     if (plot.length > 200) {
-      return plot.slice(0, 200) + '...';
+      return plot.slice(0, 200) + "...";
     }
     return plot;
   };
@@ -27,7 +27,7 @@ const MovieSliderInfo = ({ movie, goToMovie }) => {
         </S.LeftDetails>
         <S.RightDetails>
           <FontAwesomeIcon icon={faStar} />
-          <S.VoteAverage>{movie.vote_average}</S.VoteAverage>
+          <S.VoteAverage>{movie.vote_average.toFixed(1)}</S.VoteAverage>
         </S.RightDetails>
       </S.DetailContainer>
     </S.Container>

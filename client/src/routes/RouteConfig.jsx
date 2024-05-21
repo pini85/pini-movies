@@ -33,7 +33,9 @@ const RouteConfig = () => {
     import("pages/AIGeneratedMovies/AIGeneratedMovies.jsx")
   );
   const AIGeneratedMoviesByCategory = lazy(() =>
-    import("pages/AIRecommendation/AIRecommendation.tsx")
+    import(
+      "pages/AIGeneratedMovies/components/AiMoviesByCategory/AiMoviesByCategory.jsx"
+    )
   );
   const AIRecommendations = lazy(() =>
     import("pages/AIRecommendation/AIRecommendation.jsx")

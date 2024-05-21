@@ -33,9 +33,10 @@ const RouteConfig = () => {
     import("pages/AIGeneratedMovies/AIGeneratedMovies.jsx")
   );
   const AIGeneratedMoviesByCategory = lazy(() =>
-    import(
-      "pages/AIGeneratedMovies/components/AiMoviesByCategory/AiMoviesByCategory.jsx"
-    )
+    import("pages/AIRecommendation/AIRecommendation.tsx")
+  );
+  const AIRecommendations = lazy(() =>
+    import("pages/AIRecommendation/AIRecommendation.jsx")
   );
   const Settings = lazy(() => import("../pages/Settings/Settings.jsx"));
   const SavedMovies = lazy(() =>
@@ -77,6 +78,10 @@ const RouteConfig = () => {
               <Route
                 path="movies/actors/:name/page/:page"
                 element={<ActorMovies />}
+              />
+              <Route
+                path="/ai-recommendations"
+                element={<AIRecommendations />}
               />
               <Route
                 path="/ai-generated-movies"

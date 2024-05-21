@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 export const MainContainer = styled.div`
   position: fixed;
@@ -26,13 +26,13 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  max-height: 85vh;
-  width: 85vw;
+  max-height: 90vh;
+  width: 90vw;
   padding: 2vh;
   background: rgba(0, 0, 0, 0.95);
   background-color: var(--secondary-color-opacity);
   @media screen and (max-width: 700px) {
-    height: ${({ dvd }) => dvd && '56rem'};
+    height: ${({ dvd }) => dvd && "56rem"};
     width: 100%;
     /* height: 95vh; */
     transform: scale(0.8);

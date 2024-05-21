@@ -1,21 +1,22 @@
-import React, { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/configureStore';
+import React, { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/configureStore";
 
-import Button from '../Button/Button';
-import SaveMovie from '../SaveMovie/SaveMovie.component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import * as S from './Card.styles';
-import { CardProps } from './Card.types';
+import Button from "../Button/Button";
+import SaveMovie from "../SaveMovie/SaveMovie.component";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import * as S from "./Card.styles";
+import { CardProps } from "./Card.types";
 
 const Card: FC<CardProps> = ({ movie, isSaved }) => {
+  console.log(movie);
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.user);
   const image = () => {
     if (movie.poster_path === null) {
-      return 'https://underscoremusic.co.uk/site/wp-content/uploads/2014/05/no-poster.jpg';
+      return "https://underscoremusic.co.uk/site/wp-content/uploads/2014/05/no-poster.jpg";
     } else {
       return `https://image.tmdb.org/t/p/w185//${movie.poster_path}`;
     }
@@ -23,7 +24,7 @@ const Card: FC<CardProps> = ({ movie, isSaved }) => {
 
   const modifyTitle = (name: string) => {
     if (name.length > 17) {
-      return name.slice(0, 16) + '...';
+      return name.slice(0, 16) + "...";
     }
     return name;
   };
@@ -38,7 +39,9 @@ const Card: FC<CardProps> = ({ movie, isSaved }) => {
     <S.CardContainer>
       <S.CardInner>
         <S.CardFront image={image}>
-          <S.Year>{movie.release_date ? movie.release_date.substr(0, 4) : 'N/A'}</S.Year>
+          <S.Year>
+            {movie.release_date ? movie.release_date.substr(0, 4) : "N/A"}
+          </S.Year>
           <S.Rating>
             <S.IconWrapper>
               <FontAwesomeIcon icon={faStar} />

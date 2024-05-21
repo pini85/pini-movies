@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import Modal from 'components/Modal/Modal.component';
-import Button from 'components/Button/Button';
-import * as S from './addToHome.styles';
+import React, { useEffect, useState } from "react";
+import Modal from "components/Modal/Modal.component";
+import Button from "components/Button/Button";
+import * as S from "./addToHome.styles";
 
 const AddToHome = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isToggled, setToggled] = useState(true);
 
   useEffect(() => {
-    window.addEventListener('beforeinstallprompt', (e) => {
+    window.addEventListener("beforeinstallprompt", (e) => {
       setToggled(true);
 
       e.preventDefault();
@@ -24,7 +24,7 @@ const AddToHome = () => {
     if (deferredPrompt !== null) {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
+      if (outcome === "accepted") {
         deferredPrompt = null;
       }
     }
@@ -33,7 +33,11 @@ const AddToHome = () => {
   return (
     <div>
       {isToggled ? (
-        <Modal isToggled={true} setToggled={setToggled} title="Download the app!">
+        <Modal
+          isToggled={true}
+          setToggled={setToggled}
+          title="Download the app!"
+        >
           <S.ButtonContainer>
             <Button
               title="Yes! Sounds amazing!"

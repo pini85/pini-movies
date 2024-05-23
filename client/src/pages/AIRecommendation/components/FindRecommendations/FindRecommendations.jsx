@@ -32,7 +32,6 @@ const FindRecommendations = () => {
       {recommendationQuestions.map((question, index) => (
         <Step
           key={index}
-          number={index + 1}
           question={question.question}
           answers={question.answers}
           selectedAnswers={answers[index].selectedAnswers}

@@ -21,6 +21,7 @@ export const StyledCheckbox = styled.label`
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: var(--text-white);
 
   &:before {
     content: "";
@@ -30,7 +31,7 @@ export const StyledCheckbox = styled.label`
     width: 1.4em;
     height: 1.4em;
     border: 1px solid #aaa;
-    background: #fff;
+    background: var(--primary-color);
     border-radius: 0.2em;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
       0 0 0 rgba(203, 34, 237, 0.2);
@@ -43,7 +44,7 @@ export const StyledCheckbox = styled.label`
     top: 0.525em;
     left: 0.18em;
     font-size: 1.375em;
-    color: #cb22ed;
+    color: var(--secondary-color);
     line-height: 0;
     transition: all 0.2s;
     opacity: ${({ checked }) => (checked ? 1 : 0)};

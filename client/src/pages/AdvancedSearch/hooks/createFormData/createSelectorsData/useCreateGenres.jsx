@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import useGetMovieGenres from 'hooks/reactQuery/useGetMovieGenres';
+import useGetMovieGenres from "hooks/reactQuery/useGetMovieGenres";
 const useCreateGenres = () => {
   const [createGenres, setCreateGenres] = useState();
   const { data } = useGetMovieGenres();
+  console.log({ data });
   useEffect(() => {
     if (!data) return;
     let genres = [];

@@ -3,6 +3,7 @@ import Button from "components/Button/Button";
 import CategoryTitle from "components/CategoryTitle/CategoryTitle.component";
 import Modal from "components/Modal/Modal.component";
 import FineTuneRecommendations from "./components/FineTuneRecommendations/FineTuneRecommendations";
+import FindRecommendations from "./components/FindRecommendations/FindRecommendations";
 const AIRecommendation = () => {
   const [toggleFindRecommendations, setToggleFindRecommendations] =
     useState(false);
@@ -28,7 +29,7 @@ const AIRecommendation = () => {
           isToggled={toggleFindRecommendations}
           setToggled={setToggleFindRecommendations}
         >
-          hi
+          <FindRecommendations />
         </Modal>
       )}
       {fineTuneRecommendations && (

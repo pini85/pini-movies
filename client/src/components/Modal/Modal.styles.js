@@ -26,7 +26,7 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  max-height: 90vh;
+  max-height: 92vh;
   width: 90vw;
   padding: 2vh;
   background: rgba(0, 0, 0, 0.95);

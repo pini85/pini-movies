@@ -2,9 +2,12 @@ import styled from "styled-components/macro";
 
 export const CheckboxContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: start;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
   margin: 10px 0;
+  font-size: 2rem;
+  color: var(--text-white);
 `;
 
 export const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
@@ -16,7 +19,7 @@ export const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
 export const StyledCheckbox = styled.label`
   position: relative;
   padding-left: 2.3em;
-  font-size: 1.05em;
+  font-size: 2rem;
   line-height: 1.7;
   cursor: pointer;
   display: flex;

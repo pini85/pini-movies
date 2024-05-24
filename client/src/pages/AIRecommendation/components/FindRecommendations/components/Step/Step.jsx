@@ -4,23 +4,65 @@ import Button from "components/Button/Button";
 import Checkbox from "components/CheckBox/CheckBox";
 import { useWizard } from "react-use-wizard";
 
-const Step = ({ question, answers, selectedAnswers, handleCheckboxChange }) => {
+// Import the components
+import HappyEmotion from "../HappyEmotion/HappyEmotion";
+import NeutralEmotion from "../NeutralEmotion/NeutralFace";
+import SadEmotion from "../SadEmotion/SadEmotion";
+
+// Map component names to components
+const componentMap = {
+  HappyEmotion,
+  NeutralEmotion,
+  SadEmotion,
+};
+
+const Step = ({
+  question,
+  answers,
+  selectedAnswers,
+  handleCheckboxChange,
+  handleInputChange,
+}) => {
   const { previousStep, nextStep, isLastStep, isFirstStep } = useWizard();
 
   return (
     <S.Container>
-      <h1>{question}</h1>
+      <S.Header>{question}</S.Header>
       <S.AnswersContainer>
-        {answers.map((answer, index) => (
-          <S.CheckBoxContainer>
-            <Checkbox
-              key={index}
-              label={answer}
-              checked={selectedAnswers.includes(answer)}
-              onChange={() => handleCheckboxChange(answer)}
-            />
-          </S.CheckBoxContainer>
-        ))}
+        {answers.map((answer, index) => {
+          switch (answer.type) {
+            case "component":
+              const Component = componentMap[answer.content];
+              return (
+                <S.ComponentContainer key={index}>
+                  <Component />
+                </S.ComponentContainer>
+              );
+            case "checkbox":
+              return (
+                <S.CheckBoxContainer key={index}>
+                  <Checkbox
+                    label={answer.content}
+                    checked={selectedAnswers.includes(answer.value)}
+                    onChange={() => handleCheckboxChange(answer.value)}
+                  />
+                </S.CheckBoxContainer>
+              );
+            case "input":
+              return (
+                <S.InputContainer key={index}>
+                  <input
+                    type="text"
+                    placeholder={answer.content}
+                    value={selectedAnswers[0] || ""}
+                    onChange={(e) => handleInputChange(e.target.value)}
+                  />
+                </S.InputContainer>
+              );
+            default:
+              return null;
+          }
+        })}
       </S.AnswersContainer>
       <S.ButtonContainer>
         <Button

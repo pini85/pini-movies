@@ -4,10 +4,8 @@ import * as S from "./CheckBox.styles";
 const Checkbox = ({ label, checked, onChange }) => {
   return (
     <S.CheckboxContainer>
-      <S.HiddenCheckbox checked={checked} onChange={onChange} />
-      <S.StyledCheckbox checked={checked} onClick={onChange}>
-        {label}
-      </S.StyledCheckbox>
+      <input type="checkbox" checked={checked} onChange={onChange} id={label} />
+      <label for={label}>{label}</label>
     </S.CheckboxContainer>
   );
 };

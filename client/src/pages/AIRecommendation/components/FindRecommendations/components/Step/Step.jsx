@@ -22,6 +22,7 @@ const Step = ({
   selectedAnswers,
   handleCheckboxChange,
   handleInputChange,
+  handleEmotionChange,
 }) => {
   const { previousStep, nextStep, isLastStep, isFirstStep } = useWizard();
 
@@ -35,7 +36,10 @@ const Step = ({
               const Component = componentMap[answer.content];
               return (
                 <S.ComponentContainer key={index}>
-                  <Component />
+                  <Component
+                    handleClick={handleEmotionChange}
+                    answers={answers}
+                  />
                 </S.ComponentContainer>
               );
             case "checkbox":

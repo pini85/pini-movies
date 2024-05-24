@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 const Title = styled.h2`
-  font-size: 1.5rem;
+  font-size: ${(props) => (props.clicked ? "2rem" : "1.5rem")};
   font-weight: ${(props) => (props.clicked ? 700 : 300)};
   color: var(--text-white);
   text-align: center;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
+  min-height: 3.5rem;
+  transition: all 0.3s;
 `;
 
 const eyebrowMove = keyframes`
@@ -20,8 +22,8 @@ const eyebrowMove = keyframes`
 `;
 
 const Svg = styled.svg`
-  width: 64px;
-  height: 64px;
+  width: 15rem;
+  height: 15rem;
   transition: transform 0.3s;
   cursor: pointer;
 
@@ -68,10 +70,11 @@ const Svg = styled.svg`
   }
 `;
 
-const NeutralEmotion = () => {
+const NeutralEmotion = ({ handleClick }) => {
   const [clicked, setClicked] = useState(false);
 
-  const handleClick = () => {
+  const handleEmotionClick = () => {
+    handleClick("neutral");
     setClicked(!clicked);
   };
 
@@ -81,7 +84,7 @@ const NeutralEmotion = () => {
         className={clicked ? "clicked" : ""}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 64 64"
-        onClick={handleClick}
+        onClick={handleEmotionClick}
       >
         <circle className="face" cx="32" cy="32" r="30" strokeWidth="4" />
         <path

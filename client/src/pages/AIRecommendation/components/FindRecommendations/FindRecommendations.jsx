@@ -27,6 +27,14 @@ const FindRecommendations = () => {
     });
   };
 
+  const handleEmotionChange = (stepIndex, value) => {
+    setAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[stepIndex].selectedAnswers = [value];
+      return newAnswers;
+    });
+  };
+
   const handleInputChange = (stepIndex, value) => {
     setAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
@@ -45,6 +53,7 @@ const FindRecommendations = () => {
           selectedAnswers={answers[index].selectedAnswers}
           handleCheckboxChange={(answer) => handleCheckboxChange(index, answer)}
           handleInputChange={(value) => handleInputChange(index, value)}
+          handleEmotionChange={(value) => handleEmotionChange(index, value)}
         />
       ))}
     </Wizard>

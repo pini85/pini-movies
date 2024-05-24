@@ -10,7 +10,7 @@ const FindRecommendations = () => {
       selectedAnswers: [],
     }))
   );
-  console.log(answers);
+  console.log({ answers });
 
   const handleCheckboxChange = (stepIndex, answer) => {
     setAnswers((prevAnswers) => {
@@ -27,6 +27,14 @@ const FindRecommendations = () => {
     });
   };
 
+  const handleInputChange = (stepIndex, value) => {
+    setAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[stepIndex].selectedAnswers = [value];
+      return newAnswers;
+    });
+  };
+
   return (
     <Wizard>
       {recommendationQuestions.map((question, index) => (
@@ -36,6 +44,7 @@ const FindRecommendations = () => {
           answers={question.answers}
           selectedAnswers={answers[index].selectedAnswers}
           handleCheckboxChange={(answer) => handleCheckboxChange(index, answer)}
+          handleInputChange={(value) => handleInputChange(index, value)}
         />
       ))}
     </Wizard>

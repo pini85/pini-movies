@@ -14,7 +14,7 @@ const AIRecommendation = () => {
       selectedAnswers: [],
     }))
   );
-  console.log({ answers });
+
   const [toggleFindRecommendations, setToggleFindRecommendations] =
     useState(false);
   const [fineTuneRecommendations, setFineTuneRecommendations] = useState(false);

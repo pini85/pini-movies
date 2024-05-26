@@ -6,9 +6,8 @@ const DisplayPersonalizedRecommendations = ({ answers }) => {
   const displaySearchResults = () => {
     return answers.map((answer, index) => {
       let value;
-      let questionTitle = answer.question.replace(/\?$/, ""); // Remove question mark
-      console.log({ questionTitle });
-      if (questionTitle === "Favorite actors or directors") {
+      let questionTitle = answer.question.replace(/\?$/, "");
+      if (questionTitle === "Favorite actors and directors") {
         console.log({ answer });
         const actors = answer.selectedAnswers.actors?.casts.length
           ? answer.selectedAnswers.actors.casts.map((cast) => (

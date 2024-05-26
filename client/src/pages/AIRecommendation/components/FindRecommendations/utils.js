@@ -95,7 +95,7 @@ export const recommendationQuestions = [
   },
 
   {
-    question: "Favorite actors or directors?",
+    question: "Favorite actors and directors?",
     answers: [{ type: "cast-input", value: [{ actors: [], directors: [] }] }],
   },
 ];

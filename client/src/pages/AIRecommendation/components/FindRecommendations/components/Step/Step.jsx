@@ -38,9 +38,7 @@ const Step = ({
     activeStep,
     stepCount,
   } = useWizard();
-  const emotionAnswers = answers.filter(
-    (answer) => answer.type === "component"
-  );
+  console.log({ selectedAnswers });
 
   return (
     <S.Container>
@@ -55,11 +53,12 @@ const Step = ({
           switch (answer.type) {
             case "component":
               const Component = componentMap[answer.content];
+              console.log("gggg", answer);
               return (
                 <S.ComponentContainer key={index}>
                   <Component
                     handleClick={handleEmotionChange}
-                    answers={answers}
+                    selectedAnswers={selectedAnswers}
                   />
                 </S.ComponentContainer>
               );
@@ -77,7 +76,7 @@ const Step = ({
               return (
                 <S.InputContainer key={index}>
                   <DirectorInput width="18rem" />
-                  <ActorInput width="18rem" />
+                  {/* <ActorInput width="18rem" /> */}
                 </S.InputContainer>
               );
             case "input":

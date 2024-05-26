@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
 const Title = styled.h2`
@@ -64,13 +64,19 @@ const Svg = styled.svg`
     d: path("M20 40 Q32 60, 44 40");
   }
 `;
-const HappyEmotion = ({ handleClick, answers }) => {
-  console.log(answers);
-
+const HappyEmotion = ({ handleClick, selectedAnswers }) => {
   const [clicked, setClicked] = useState(false);
 
+  useEffect(() => {
+    console.log({ selectedAnswers });
+    if (selectedAnswers[0] !== "happy") {
+      setClicked(false);
+    }
+  }, [selectedAnswers]);
+
   const handleEmotionClick = () => {
-    handleClick("Happy");
+    const value = clicked ? "" : "happy";
+    handleClick(value);
     setClicked(!clicked);
   };
 

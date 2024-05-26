@@ -4,13 +4,11 @@ import Button from "components/Button/Button";
 import Checkbox from "components/CheckBox/CheckBox";
 import { useWizard } from "react-use-wizard";
 
-// Import the components
 import HappyEmotion from "../HappyEmotion/HappyEmotion";
 import NeutralEmotion from "../NeutralEmotion/NeutralFace";
 import SadEmotion from "../SadEmotion/SadEmotion";
 import ActorInput from "pages/AdvancedSearch/components/FormInput/Inputs/ActorInput";
 import DirectorInput from "pages/AdvancedSearch/components/FormInput/Inputs/DirectorInput";
-import { AdvancedFormProvider } from "pages/AdvancedSearch/context/advancedSearchFormContext";
 import Input from "components/Input/Input.component";
 import SelectInput from "components/SelectInput/SelectInput.component";
 
@@ -53,7 +51,7 @@ const Step = ({
           switch (answer.type) {
             case "component":
               const Component = componentMap[answer.content];
-              console.log("gggg", answer);
+
               return (
                 <S.ComponentContainer key={index}>
                   <Component

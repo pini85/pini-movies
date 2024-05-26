@@ -56,11 +56,7 @@ export const recommendationQuestions = [
         content: "Movie Night with friends",
         value: "friends",
       },
-      {
-        type: "checkbox",
-        content: "Date Night with boyfriend or girlfriend",
-        value: "date",
-      },
+      { type: "checkbox", content: "Family Movie Night", value: "family" },
       { type: "checkbox", content: "Kids' Movie Night", value: "kids" },
       {
         type: "selector",

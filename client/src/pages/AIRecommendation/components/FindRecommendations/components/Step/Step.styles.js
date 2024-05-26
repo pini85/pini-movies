@@ -33,6 +33,12 @@ export const Header = styled.h2`
   font-weight: 700;
   color: var(--text-white);
   text-align: center;
+`;
+export const StepCount = styled.h3`
+  font-size: var(--heading-tertiary);
+  font-weight: 300;
+  color: var(--text-white);
+  text-align: center;
   margin-bottom: 2rem;
 `;
 
@@ -42,6 +48,7 @@ export const InputContainer = styled.div`
   align-items: center;
   gap: 1rem;
   margin-bottom: 10px;
+  flex-direction: row-reverse;
 `;
 export const SelectorContainer = styled.div`
   display: flex;

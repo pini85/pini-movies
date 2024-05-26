@@ -16,7 +16,6 @@ const Input = forwardRef((props, ref) => {
         id={name}
         placeholder={placeholder}
         onChange={(e) => handleOnChange(e, "input")}
-        width={props.width}
       />
     </label>
   );

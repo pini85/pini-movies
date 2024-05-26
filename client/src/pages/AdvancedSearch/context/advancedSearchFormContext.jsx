@@ -54,6 +54,7 @@ const AdvancedFormProvider = (props) => {
   };
 
   const handleOnChange = (e, inputType) => {
+    console.log(e.target.name, e.target.value, inputType);
     if (inputType === "input") {
       setInputValues((prevState) => {
         return {

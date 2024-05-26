@@ -1,6 +1,6 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from "react";
 
-import * as S from './Input.styles';
+import * as S from "./Input.styles";
 
 const Input = forwardRef((props, ref) => {
   const { type, placeholder, name, handleOnChange, value, isDisabled } = props;
@@ -15,7 +15,7 @@ const Input = forwardRef((props, ref) => {
         name={name}
         id={name}
         placeholder={placeholder}
-        onChange={(e) => handleOnChange(e, 'input')}
+        onChange={(e) => handleOnChange(e, "input")}
         width={props.width}
       />
     </label>

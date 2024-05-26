@@ -5,7 +5,7 @@ export const Container = styled.div`
   justify-content: center;
   width: 18rem;
   background: var(--secondary-color);
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
   border-left: 1px solid white;
   border-right: 1px solid white;
 

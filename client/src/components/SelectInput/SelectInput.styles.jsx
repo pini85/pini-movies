@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyleSelect = styled.select`
   color: rgba(0, 0, 0, 0.6);
@@ -7,12 +7,12 @@ export const StyleSelect = styled.select`
   font-weight: 300;
 
   text-align-last: center;
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
 
   font-size: 1.5rem;
   background: white;
   @media screen and (max-width: 700px) {
-    margin: 1rem 1rem;
+    /* margin: 1rem 1rem; */
   }
 `;
 

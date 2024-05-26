@@ -1,23 +1,26 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState, useContext, createContext } from "react";
 
 const AdvancedSearchFormContext = createContext();
 
 const useAdvancedForm = () => {
   const context = useContext(AdvancedSearchFormContext);
   if (!context) {
-    throw new Error('useAdvancedForm must be used within a AdvancedForm Provider');
+    throw new Error(
+      "useAdvancedForm must be used within a AdvancedForm Provider"
+    );
   }
   return context;
 };
 
 const AdvancedFormProvider = (props) => {
+  const dontShowChoice = props.dontShowChoice;
   const [selectorsData, setSelectorsData] = useState({
-    fromYear: '',
-    toYear: '',
-    minmumRating: '',
-    minumumVotes: '',
-    genre: '',
-    minumumRuntime: '',
+    fromYear: "",
+    toYear: "",
+    minmumRating: "",
+    minumumVotes: "",
+    genre: "",
+    minumumRuntime: "",
   });
   const [inputData, setInputData] = useState({
     actors: { type: null, casts: [] },
@@ -25,9 +28,9 @@ const AdvancedFormProvider = (props) => {
     writers: { type: null, casts: [] },
   });
   const [inputValues, setInputValues] = useState({
-    actors: '',
-    directors: '',
-    writers: '',
+    actors: "",
+    directors: "",
+    writers: "",
   });
 
   const searchResults = () => {
@@ -36,12 +39,12 @@ const AdvancedFormProvider = (props) => {
 
   const resetForm = () => {
     setSelectorsData({
-      fromYear: '',
-      toYear: '',
-      minmumRating: '',
-      minumumVotes: '',
-      genre: '',
-      minumumRuntime: '',
+      fromYear: "",
+      toYear: "",
+      minmumRating: "",
+      minumumVotes: "",
+      genre: "",
+      minumumRuntime: "",
     });
     setInputData({
       actors: { type: null, casts: [] },
@@ -51,7 +54,7 @@ const AdvancedFormProvider = (props) => {
   };
 
   const handleOnChange = (e, inputType) => {
-    if (inputType === 'input') {
+    if (inputType === "input") {
       setInputValues((prevState) => {
         return {
           ...prevState,
@@ -59,7 +62,7 @@ const AdvancedFormProvider = (props) => {
         };
       });
     }
-    if (inputType === 'selector') {
+    if (inputType === "selector") {
       setSelectorsData((prevState) => {
         return {
           ...prevState,
@@ -79,6 +82,7 @@ const AdvancedFormProvider = (props) => {
     setInputData,
     resetForm,
     searchResults,
+    dontShowChoice,
   };
 
   return <AdvancedSearchFormContext.Provider value={value} {...props} />;

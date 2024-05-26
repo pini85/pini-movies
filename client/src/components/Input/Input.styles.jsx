@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components/macro";
 
 export const Input = styled.input`
-  width: ${(props) => (props.width ? props.width : '18rem')};
+  width: ${(props) => props.width && props.width};
   height: 2.5rem;
   padding: 1.5rem;
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
   font-size: 1.3rem;
   border: 3px solid var(--primary-color);
   &:focus {

@@ -1,5 +1,10 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
+import { useAdvancedForm } from "pages/AdvancedSearch/context/advancedSearchFormContext";
 const AnimateInput = ({ input, dropDownOption, showInput }) => {
+  const { dontShowChoice } = useAdvancedForm();
+  if (dontShowChoice) {
+    return input;
+  }
   return (
     <>
       {dropDownOption}

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
-import useDebounce from 'hooks/useDebounce.hooks';
-import { tmdbQueryApi, tmdbCastId } from 'apis/tmdbApi';
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import useDebounce from "hooks/useDebounce.hooks";
+import { tmdbQueryApi, tmdbCastId } from "apis/tmdbApi";
 const useGetSuggestions = (
   searchQuery,
   showMovies,
@@ -14,19 +14,31 @@ const useGetSuggestions = (
   const debouncedMovieSearch = useDebounce(searchQuery, 100);
   const debouncedCastSearch = useDebounce(searchQuery, 100);
   const { data: movies } = useQuery(
-    ['movie-search', debouncedMovieSearch],
+    ["movie-search", debouncedMovieSearch],
     () => tmdbQueryApi(debouncedMovieSearch, 1),
     {
-      enabled: !!debouncedMovieSearch && !!showMovies && searchQuery?.length > 0,
+      enabled:
+        !!debouncedMovieSearch && !!showMovies && searchQuery?.length > 0,
     }
   );
   const { data: casts } = useQuery(
-    ['casts-search', debouncedCastSearch],
+    ["casts-search", debouncedCastSearch],
     () => tmdbCastId(debouncedCastSearch),
     {
       enabled: !!debouncedCastSearch && !!showCast && searchQuery?.length > 0,
     }
   );
+  const removeDuplicates = (castList) => {
+    const uniqueNames = new Set();
+    return castList.filter((cast) => {
+      if (uniqueNames.has(cast.name.toLowerCase())) {
+        return false;
+      } else {
+        uniqueNames.add(cast.name.toLowerCase());
+        return true;
+      }
+    });
+  };
 
   useEffect(() => {
     if (!movies && !casts) return;
@@ -34,12 +46,14 @@ const useGetSuggestions = (
     const castObj = { casts: [] };
     const movieObj = { movies: [] };
     const filterCast = casts?.results.filter((cast) => {
-      return cast.known_for_department === 'Acting';
+      return cast.known_for_department === "Acting";
     });
+    const uniqueFilterCast = removeDuplicates(filterCast);
 
-    filterCast?.slice(0, castNumber).forEach((cast) => {
+    uniqueFilterCast?.slice(0, castNumber).forEach((cast) => {
       castObj.casts.push(cast);
     });
+    console.log({ castObj });
 
     movies?.results.slice(0, moviesNumber).forEach((movie) => {
       movieObj.movies.push(movie);

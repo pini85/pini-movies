@@ -5,7 +5,7 @@ export const CheckboxContainer = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: center;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   font-size: 2rem;
   color: var(--text-white);
 `;

@@ -1,21 +1,21 @@
-import { useAdvancedForm } from '../context/advancedSearchFormContext';
-import { useNavigate } from 'react-router-dom';
-import CreateInputs from './CreateInputs';
-import CreateSelectors from './CreateSelectors';
-import queryCreator from '../queryCreator';
-import Button from 'components/Button/Button';
-import * as S from '../AdvancedSearchNew.styles';
+import { useAdvancedForm } from "../context/advancedSearchFormContext";
+import { useNavigate } from "react-router-dom";
+import CreateInputs from "./CreateInputs";
+import CreateSelectors from "./CreateSelectors";
+import queryCreator from "../queryCreator";
+import Button from "components/Button/Button";
+import * as S from "../AdvancedSearchNew.styles";
 
 const AdvancedSearchNewView = () => {
   const navigate = useNavigate();
-  const { inputData, selectorsData } = useAdvancedForm();
+  const { inputData, selectorsData, dontShowChoice } = useAdvancedForm();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const queries = queryCreator(inputData, selectorsData);
 
     navigate(`/search/advanced-search/${queries}/page/1`);
   };
-
+  console.log({ dontShowChoice });
   return (
     <S.FormContainer>
       <CreateSelectors />

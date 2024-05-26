@@ -26,6 +26,10 @@ const Svg = styled.svg`
   height: 15rem;
   transition: transform 0.3s;
   cursor: pointer;
+  @media screen and (max-width: 700px) {
+    width: 10rem;
+    height: 10rem;
+  }
 
   &.clicked {
     transform: scale(1.2);

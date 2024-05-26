@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
 const Title = styled.h2`
@@ -74,11 +74,18 @@ const Svg = styled.svg`
   }
 `;
 
-const NeutralEmotion = ({ handleClick }) => {
+const NeutralEmotion = ({ handleClick, selectedAnswers }) => {
   const [clicked, setClicked] = useState(false);
 
+  useEffect(() => {
+    if (selectedAnswers[0] !== "neutral") {
+      setClicked(false);
+    }
+  }, [selectedAnswers]);
+
   const handleEmotionClick = () => {
-    handleClick("neutral");
+    const value = clicked ? "" : "neutral";
+    handleClick(value);
     setClicked(!clicked);
   };
 

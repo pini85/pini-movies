@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components/macro";
 
 const Title = styled.h2`
   font-size: ${(props) => (props.clicked ? "2rem" : "1.5rem")};
@@ -87,11 +87,19 @@ const Svg = styled.svg`
   }
 `;
 
-const SadEmotion = ({ handleClick }) => {
+const SadEmotion = ({ handleClick, selectedAnswers }) => {
   const [clicked, setClicked] = useState(false);
 
+  useEffect(() => {
+    console.log({ selectedAnswers });
+    if (selectedAnswers[0] !== "sad") {
+      setClicked(false);
+    }
+  }, [selectedAnswers]);
+
   const handleEmotionClick = () => {
-    handleClick("sad");
+    const value = clicked ? "" : "sad";
+    handleClick(value);
     setClicked(!clicked);
   };
 
@@ -118,7 +126,7 @@ const SadEmotion = ({ handleClick }) => {
           <path className="tear" d="M34 36 Q32 42, 36 44 Q40 42, 38 36 Z" />
         </g>
       </Svg>
-      <Title clicked={handleEmotionClick}>Sad</Title>
+      <Title clicked={clicked}>Sad</Title>
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Wizard } from "react-use-wizard";
 import { recommendationQuestions } from "./utils";
 import Step from "./components/Step/Step";
 import { useAdvancedForm } from "pages/AdvancedSearch/context/advancedSearchFormContext";
+import { faV } from "@fortawesome/free-solid-svg-icons";
 
 const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
   const handleCheckboxChange = (stepIndex, answer) => {
@@ -24,9 +25,9 @@ const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
   useEffect(() => {
     // Find the index of the question that deals with favorite actors or directors
     const favoriteActorsDirectorsIndex = recommendationQuestions.findIndex(
-      (question) =>
-        question.question === "Do you have any favorite actors or directors?"
+      (question) => question.question === "Favorite actors and directors?"
     );
+    console.log({ favoriteActorsDirectorsIndex });
 
     // Update the answers state with the new inputData
     setAnswers((prevAnswers) => {
@@ -47,6 +48,7 @@ const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
   };
 
   const handleInputChange = (stepIndex, value) => {
+    console.log("XXXXX", { value });
     setAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
       newAnswers[stepIndex].selectedAnswers = [value];
@@ -63,7 +65,9 @@ const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
           answers={question.answers}
           selectedAnswers={answers[index].selectedAnswers}
           handleCheckboxChange={(answer) => handleCheckboxChange(index, answer)}
-          handleInputChange={(value) => handleInputChange(index, value)}
+          handleInputChange={(value) =>
+            handleInputChange(index, value.target.value)
+          }
           handleEmotionChange={(value) => handleEmotionChange(index, value)}
           closeModal={closeModal}
         />

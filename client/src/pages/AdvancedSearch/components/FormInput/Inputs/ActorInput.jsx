@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import { useAdvancedForm } from "pages/AdvancedSearch/context/advancedSearchFormContext";
 import CastInput from "../CastInput";
 import Input from "components/Input/Input.component";
-const ActorInput = ({ width }) => {
+const ActorInput = () => {
   const [showInput, setShowInput] = useState(false);
   const { handleOnChange, inputValues } = useAdvancedForm();
 
@@ -32,7 +32,6 @@ const ActorInput = ({ width }) => {
         type="text"
         placeholder="actors"
         handleOnChange={handleOnChange}
-        width={width}
       />
     </CastInput>
   );

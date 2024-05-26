@@ -1,17 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Wizard } from "react-use-wizard";
 import { recommendationQuestions } from "./utils";
 import Step from "./components/Step/Step";
+import { useAdvancedForm } from "pages/AdvancedSearch/context/advancedSearchFormContext";
 
-const FindRecommendations = ({ closeModal }) => {
-  const [answers, setAnswers] = useState(
-    recommendationQuestions.map((question) => ({
-      question: question.question,
-      selectedAnswers: [],
-    }))
-  );
-  console.log({ answers });
-
+const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
   const handleCheckboxChange = (stepIndex, answer) => {
     setAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
@@ -26,6 +19,24 @@ const FindRecommendations = ({ closeModal }) => {
       return newAnswers;
     });
   };
+  const { inputData } = useAdvancedForm();
+
+  useEffect(() => {
+    // Find the index of the question that deals with favorite actors or directors
+    const favoriteActorsDirectorsIndex = recommendationQuestions.findIndex(
+      (question) =>
+        question.question === "Do you have any favorite actors or directors?"
+    );
+
+    // Update the answers state with the new inputData
+    setAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      if (favoriteActorsDirectorsIndex !== -1) {
+        newAnswers[favoriteActorsDirectorsIndex].selectedAnswers = inputData;
+      }
+      return newAnswers;
+    });
+  }, [inputData, setAnswers]);
 
   const handleEmotionChange = (stepIndex, value) => {
     setAnswers((prevAnswers) => {

@@ -83,7 +83,7 @@ const CastInput = ({
       <Button
         handleClick={addCast}
         padding="0.5rem 1rem"
-        margin="0.2rem 1.5rem"
+        margin="0.2rem 1rem"
         height="3rem"
         title="&#43;"
       />

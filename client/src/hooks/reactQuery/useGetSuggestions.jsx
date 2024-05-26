@@ -53,7 +53,6 @@ const useGetSuggestions = (
     uniqueFilterCast?.slice(0, castNumber).forEach((cast) => {
       castObj.casts.push(cast);
     });
-    console.log({ castObj });
 
     movies?.results.slice(0, moviesNumber).forEach((movie) => {
       movieObj.movies.push(movie);

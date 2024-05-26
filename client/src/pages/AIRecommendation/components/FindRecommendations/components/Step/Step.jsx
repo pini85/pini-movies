@@ -30,7 +30,14 @@ const Step = ({
   handleEmotionChange,
   closeModal,
 }) => {
-  const { previousStep, nextStep, isLastStep, isFirstStep } = useWizard();
+  const {
+    previousStep,
+    nextStep,
+    isLastStep,
+    isFirstStep,
+    activeStep,
+    stepCount,
+  } = useWizard();
   const emotionAnswers = answers.filter(
     (answer) => answer.type === "component"
   );
@@ -38,6 +45,9 @@ const Step = ({
   return (
     <S.Container>
       <S.Header>{question}</S.Header>
+      <S.StepCount>
+        {activeStep + 1}/{stepCount}
+      </S.StepCount>
       <S.AnswersContainer
         occasionQuestion={question === "What is the occasion?"}
       >
@@ -66,10 +76,8 @@ const Step = ({
             case "cast-input":
               return (
                 <S.InputContainer key={index}>
-                  <AdvancedFormProvider dontShowChoice>
-                    <ActorInput width="16rem" />
-                    <DirectorInput width="16rem" />
-                  </AdvancedFormProvider>
+                  <DirectorInput width="18rem" />
+                  <ActorInput width="18rem" />
                 </S.InputContainer>
               );
             case "input":

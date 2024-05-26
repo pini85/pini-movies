@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 
 export const Input = styled.input`
-  width: ${(props) => props.width && props.width};
+  width: ${(props) => (props.width ? props.width : "18rem")};
   height: 2.5rem;
   padding: 1.5rem;
   /* margin: 0 1rem; */

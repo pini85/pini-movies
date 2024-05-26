@@ -6,9 +6,9 @@ import * as S from "./CreateInputs.styles";
 const CreateInputs = () => {
   return (
     <S.CreateInputContainer>
-      <ActorInput width="20rem" />
-      <DirectorInput width="20rem" />
-      <WriterInput width="20rem" />
+      <ActorInput />
+      <DirectorInput />
+      <WriterInput />
     </S.CreateInputContainer>
   );
 };

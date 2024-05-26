@@ -3,7 +3,7 @@ import { Wizard } from "react-use-wizard";
 import { recommendationQuestions } from "./utils";
 import Step from "./components/Step/Step";
 
-const FindRecommendations = () => {
+const FindRecommendations = ({ closeModal }) => {
   const [answers, setAnswers] = useState(
     recommendationQuestions.map((question) => ({
       question: question.question,
@@ -54,6 +54,7 @@ const FindRecommendations = () => {
           handleCheckboxChange={(answer) => handleCheckboxChange(index, answer)}
           handleInputChange={(value) => handleInputChange(index, value)}
           handleEmotionChange={(value) => handleEmotionChange(index, value)}
+          closeModal={closeModal}
         />
       ))}
     </Wizard>

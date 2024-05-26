@@ -8,6 +8,11 @@ import { useWizard } from "react-use-wizard";
 import HappyEmotion from "../HappyEmotion/HappyEmotion";
 import NeutralEmotion from "../NeutralEmotion/NeutralFace";
 import SadEmotion from "../SadEmotion/SadEmotion";
+import ActorInput from "pages/AdvancedSearch/components/FormInput/Inputs/ActorInput";
+import DirectorInput from "pages/AdvancedSearch/components/FormInput/Inputs/DirectorInput";
+import { AdvancedFormProvider } from "pages/AdvancedSearch/context/advancedSearchFormContext";
+import Input from "components/Input/Input.component";
+import SelectInput from "components/SelectInput/SelectInput.component";
 
 // Map component names to components
 const componentMap = {
@@ -23,13 +28,19 @@ const Step = ({
   handleCheckboxChange,
   handleInputChange,
   handleEmotionChange,
+  closeModal,
 }) => {
   const { previousStep, nextStep, isLastStep, isFirstStep } = useWizard();
+  const emotionAnswers = answers.filter(
+    (answer) => answer.type === "component"
+  );
 
   return (
     <S.Container>
       <S.Header>{question}</S.Header>
-      <S.AnswersContainer>
+      <S.AnswersContainer
+        occasionQuestion={question === "What is the occasion?"}
+      >
         {answers.map((answer, index) => {
           switch (answer.type) {
             case "component":
@@ -52,16 +63,37 @@ const Step = ({
                   />
                 </S.CheckBoxContainer>
               );
+            case "cast-input":
+              return (
+                <S.InputContainer key={index}>
+                  <AdvancedFormProvider dontShowChoice>
+                    <ActorInput width="16rem" />
+                    <DirectorInput width="16rem" />
+                  </AdvancedFormProvider>
+                </S.InputContainer>
+              );
             case "input":
               return (
                 <S.InputContainer key={index}>
-                  <input
-                    type="text"
-                    placeholder={answer.content}
-                    value={selectedAnswers[0] || ""}
-                    onChange={(e) => handleInputChange(e.target.value)}
-                  />
+                  <Input placeholder={answer.content} label={answer.content} />
                 </S.InputContainer>
+              );
+            case "selector":
+              return (
+                <S.SelectorContainer key={index}>
+                  <SelectInput
+                    title={answer.placeholder}
+                    name={answer.value}
+                    handleOnChange={handleInputChange}
+                    value={selectedAnswers[0]?.[answer.value] || ""}
+                  >
+                    {answer.content.map((option, idx) => (
+                      <option key={idx} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </SelectInput>
+                </S.SelectorContainer>
               );
             default:
               return null;
@@ -75,9 +107,8 @@ const Step = ({
           handleClick={previousStep}
         />
         <Button
-          disabled={isLastStep}
-          title="Next Step"
-          handleClick={nextStep}
+          title={isLastStep ? "Complete" : "Next Step"}
+          handleClick={isLastStep ? closeModal : nextStep}
         />
       </S.ButtonContainer>
     </S.Container>

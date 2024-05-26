@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const CheckBoxContainer = styled.div`
-  width: 12rem;
+  /* width: 12rem; */
 `;
 
 export const ButtonContainer = styled.div`
@@ -20,9 +20,10 @@ export const ButtonContainer = styled.div`
 
 export const AnswersContainer = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: ${(props) => (props.occasionQuestion ? "column" : "row")};
+  align-items: ${(props) => (props.occasionQuestion ? "flex-start" : "center")};
   flex-wrap: wrap;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 3rem;
   margin-bottom: 5rem;
 `;
@@ -36,8 +37,14 @@ export const Header = styled.h2`
 `;
 
 export const InputContainer = styled.div`
-  width: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 10px;
+`;
+export const SelectorContainer = styled.div`
+  display: flex;
 `;
 
 export const ComponentContainer = styled.div`

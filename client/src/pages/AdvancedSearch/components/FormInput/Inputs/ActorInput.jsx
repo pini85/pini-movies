@@ -1,13 +1,13 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from "react";
 
-import { useAdvancedForm } from 'pages/AdvancedSearch/context/advancedSearchFormContext';
-import CastInput from '../CastInput';
-import Input from 'components/Input/Input.component';
-const ActorInput = () => {
+import { useAdvancedForm } from "pages/AdvancedSearch/context/advancedSearchFormContext";
+import CastInput from "../CastInput";
+import Input from "components/Input/Input.component";
+const ActorInput = ({ width }) => {
   const [showInput, setShowInput] = useState(false);
   const { handleOnChange, inputValues } = useAdvancedForm();
 
-  const value = inputValues['actors'];
+  const value = inputValues["actors"];
 
   const ref = useRef();
 
@@ -32,10 +32,9 @@ const ActorInput = () => {
         type="text"
         placeholder="actors"
         handleOnChange={handleOnChange}
-        width="20rem"
+        width={width}
       />
     </CastInput>
   );
 };
 export default ActorInput;
-

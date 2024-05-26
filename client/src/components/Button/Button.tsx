@@ -1,23 +1,27 @@
-import React, { FC } from 'react';
-import { ButtonContainer } from './button.styles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
-import google from '../../assets/images/google.svg';
-import { ButtonProps } from './Button.types';
+import React, { FC } from "react";
+import { ButtonContainer } from "./button.styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import google from "../../assets/images/google.svg";
+import { ButtonProps } from "./Button.types";
 
 const Button: FC<ButtonProps> = (props) => {
   const renderButton = () => {
     switch (props.icon) {
-      case 'search':
-        return <FontAwesomeIcon icon={faSearch} style={{ marginRight: '5px' }} />;
-      case 'google':
+      case "search":
         return (
-          <span style={{ width: '1.5rem', height: '1.5rem', marginRight: '1rem' }}>
+          <FontAwesomeIcon icon={faSearch} style={{ marginRight: "5px" }} />
+        );
+      case "google":
+        return (
+          <span
+            style={{ width: "1.5rem", height: "1.5rem", marginRight: "1rem" }}
+          >
             <img src={google} alt="google" />
           </span>
         );
-      case 'watch':
+      case "watch":
         return <FontAwesomeIcon icon={faPlay} />;
 
       default:
@@ -31,6 +35,7 @@ const Button: FC<ButtonProps> = (props) => {
       height={props.height}
       width={props.width}
       padding={props.padding}
+      margin={props.margin}
       disabled={props.disabled}
       onClick={props.handleClick}
     >

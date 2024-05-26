@@ -1,15 +1,17 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 type Props = {
   padding?: string;
   width?: string;
   height?: string;
   opacity?: number;
+  margin?: string;
 };
 export const ButtonContainer = styled.button<Props>`
   text-transform: capitalize;
   display: flex;
   align-items: center;
-  padding: ${({ padding }) => (padding ? padding : '1rem 2.5rem')};
+  padding: ${({ padding }) => (padding ? padding : "1rem 2.5rem")};
+  margin: ${(props) => props.margin && props.margin};
   width: ${(props) => props.width && props.width};
   height: ${(props) => props.height && props.height};
   background-color: var(--primary-color);

@@ -5,5 +5,6 @@ export interface ButtonProps {
   height?: string;
   width?: string;
   padding?: string;
+  margin?: string;
   handleClick?: () => void;
 }

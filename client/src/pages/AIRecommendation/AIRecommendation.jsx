@@ -8,19 +8,20 @@ const AIRecommendation = () => {
   const [toggleFindRecommendations, setToggleFindRecommendations] =
     useState(false);
   const [fineTuneRecommendations, setFineTuneRecommendations] = useState(false);
+  const toggleModal = (setToggle) => setToggle((prevState) => !prevState);
   return (
     <div>
       <CategoryTitle title="AI Recommendations" />
       <Button
         title="Find Recommendations"
         handleClick={() => {
-          setToggleFindRecommendations((prevState) => !prevState);
+          toggleModal(setToggleFindRecommendations);
         }}
       />
       <Button
         title="Fine Tune Recommendations"
         handleClick={() => {
-          setFineTuneRecommendations((prevState) => !prevState);
+          toggleModal(setFineTuneRecommendations);
         }}
       />
       {toggleFindRecommendations && (
@@ -29,7 +30,9 @@ const AIRecommendation = () => {
           isToggled={toggleFindRecommendations}
           setToggled={setToggleFindRecommendations}
         >
-          <FindRecommendations />
+          <FindRecommendations
+            closeModal={() => toggleModal(setToggleFindRecommendations)}
+          />
         </Modal>
       )}
       {fineTuneRecommendations && (

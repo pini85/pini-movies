@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./Step.styles";
 import Button from "components/Button/Button";
 import Checkbox from "components/CheckBox/CheckBox";
@@ -11,12 +11,40 @@ import ActorInput from "pages/AdvancedSearch/components/FormInput/Inputs/ActorIn
 import DirectorInput from "pages/AdvancedSearch/components/FormInput/Inputs/DirectorInput";
 import Input from "components/Input/Input.component";
 import SelectInput from "components/SelectInput/SelectInput.component";
+import FineTuneRecommendations from "pages/AIRecommendation/components/FineTuneRecommendations/FineTuneRecommendations";
+import CategoryTitle from "components/CategoryTitle/CategoryTitle.component";
+
+const useWindowDimensions = () => {
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return windowDimensions;
+};
 
 // Map component names to components
 const componentMap = {
   HappyEmotion,
   NeutralEmotion,
   SadEmotion,
+  FineTuneRecommendations,
 };
 
 const Step = ({
@@ -26,6 +54,8 @@ const Step = ({
   handleCheckboxChange,
   handleInputChange,
   handleEmotionChange,
+  handleInputChange,
+  inputValue,
   closeModal,
 }) => {
   const {
@@ -36,15 +66,19 @@ const Step = ({
     activeStep,
     stepCount,
   } = useWizard();
-  console.log({ selectedAnswers });
-
+  console.log({ question });
+  const isFinetuneRecommendation = question === "Do you like this movie?";
+  const { width, height } = useWindowDimensions();
+  console.log({ width, height });
   return (
     <S.Container>
-      <S.Header>{question}</S.Header>
+      <CategoryTitle title={question} />
+
       <S.StepCount>
         {activeStep + 1}/{stepCount}
       </S.StepCount>
       <S.AnswersContainer
+        isFinetuneRecommendation={isFinetuneRecommendation}
         occasionQuestion={question === "What is the occasion?"}
       >
         {answers.map((answer, index) => {
@@ -53,11 +87,26 @@ const Step = ({
               const Component = componentMap[answer.content];
 
               return (
-                <S.ComponentContainer key={index}>
+                <S.ComponentContainer
+                  key={index}
+                  movieRecommendation={isFinetuneRecommendation}
+                >
                   <Component
                     handleClick={handleEmotionChange}
                     selectedAnswers={selectedAnswers}
-                  />
+                  >
+                    <S.ButtonContainer>
+                      <Button
+                        disabled={isFirstStep}
+                        title="Previous Step"
+                        handleClick={previousStep}
+                      />
+                      <Button
+                        title={isLastStep ? "Get movies" : "Next Step"}
+                        handleClick={isLastStep ? closeModal : nextStep}
+                      />
+                    </S.ButtonContainer>
+                  </Component>
                 </S.ComponentContainer>
               );
             case "checkbox":
@@ -74,13 +123,17 @@ const Step = ({
               return (
                 <S.InputContainer key={index}>
                   <DirectorInput width="18rem" />
-                  {/* <ActorInput width="18rem" /> */}
+                  <ActorInput width="18rem" />
                 </S.InputContainer>
               );
             case "input":
               return (
                 <S.InputContainer key={index}>
-                  <Input placeholder={answer.content} label={answer.content} />
+                  <Input
+                    placeholder={answer.content}
+                    label={answer.content}
+                    maxLen={1}
+                  />
                 </S.InputContainer>
               );
             case "selector":
@@ -105,17 +158,19 @@ const Step = ({
           }
         })}
       </S.AnswersContainer>
-      <S.ButtonContainer>
-        <Button
-          disabled={isFirstStep}
-          title="Previous Step"
-          handleClick={previousStep}
-        />
-        <Button
-          title={isLastStep ? "Complete" : "Next Step"}
-          handleClick={isLastStep ? closeModal : nextStep}
-        />
-      </S.ButtonContainer>
+      {!isFinetuneRecommendation && (
+        <S.ButtonContainer>
+          <Button
+            disabled={isFirstStep}
+            title="Previous Step"
+            handleClick={previousStep}
+          />
+          <Button
+            title={isLastStep ? "Get movies" : "Next Step"}
+            handleClick={isLastStep ? closeModal : nextStep}
+          />
+        </S.ButtonContainer>
+      )}
     </S.Container>
   );
 };

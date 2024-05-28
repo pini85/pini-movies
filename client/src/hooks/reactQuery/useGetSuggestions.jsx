@@ -29,6 +29,7 @@ const useGetSuggestions = (
     }
   );
   const removeDuplicates = (castList) => {
+    if (!castList) return;
     const uniqueNames = new Set();
     return castList.filter((cast) => {
       if (uniqueNames.has(cast.name.toLowerCase())) {
@@ -46,7 +47,7 @@ const useGetSuggestions = (
     const castObj = { casts: [] };
     const movieObj = { movies: [] };
     const filterCast = casts?.results.filter((cast) => {
-      return cast.known_for_department === "Acting";
+      return cast.known_for_department === type;
     });
     const uniqueFilterCast = removeDuplicates(filterCast);
 

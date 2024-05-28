@@ -42,7 +42,7 @@ const Modal = ({
               exit={{ opacity: 0 }}
               duration={1}
             >
-              <CategoryTitle title={title}></CategoryTitle>
+              {title && <CategoryTitle title={title}></CategoryTitle>}
 
               <motion.div
                 initial={{ y: 0 }}

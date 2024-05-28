@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 export const Container = styled.div`
   background-color: var(--secondary-color);
@@ -18,23 +18,25 @@ export const CarouselContainer = styled.div`
     margin-top: 0;
   }
 `;
-export const Header = styled.div`
+export const Header = styled.h1`
   font-size: var(--heading-primary);
   font-weight: 700;
   color: var(--text-white);
   text-align: center;
-  margin-top: 4rem;
+  margin-top: 3rem;
 `;
 
-export const Paragraph = styled.div`
+export const Paragraph = styled.h2`
   font-size: var(--heading-secondary);
   font-weight: 700;
   color: var(--primary-color);
   text-align: center;
+  margin-top: -1.5rem;
 `;
 
-export const OptionContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: 3rem 0 4rem 0;
+  gap: 3rem;
 `;

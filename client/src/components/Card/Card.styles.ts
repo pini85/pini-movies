@@ -1,7 +1,11 @@
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 type Props = {
   image: () => string;
+};
+type ContainerProps = {
+  height?: string;
+  width?: string;
 };
 
 export const CardInner = styled.div`
@@ -13,7 +17,7 @@ export const CardInner = styled.div`
   transform-style: preserve-3d;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 `;
-export const CardContainer = styled.div`
+export const CardContainer = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,6 +27,9 @@ export const CardContainer = styled.div`
   margin: 0 2rem 2rem 2rem;
   width: 17rem;
   height: 27rem;
+  width: ${(props) => props.width ?? "17rem"};
+  height: ${(props) => props.height ?? "27rem"};
+
   perspective: 1000px;
   margin-bottom: 3.5rem;
 
@@ -57,7 +64,8 @@ export const CardBack = styled.div<Props>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: ${(props) => `url(${props.image()})no-repeat center center/cover`};
+  background: ${(props) =>
+    `url(${props.image()})no-repeat center center/cover`};
   color: white;
 `;
 //image.tmdb.org/t/p/w185//${props.movie.poster_path

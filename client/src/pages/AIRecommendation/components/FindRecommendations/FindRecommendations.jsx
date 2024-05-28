@@ -1,11 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Wizard } from "react-use-wizard";
 import { recommendationQuestions } from "./utils";
 import Step from "./components/Step/Step";
 import { useAdvancedForm } from "pages/AdvancedSearch/context/advancedSearchFormContext";
-import { faV } from "@fortawesome/free-solid-svg-icons";
 
 const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputValue = (e) => {
+    const value = e.target.value;
+    setInputValue((prev) => prev + value);
+  };
   const handleCheckboxChange = (stepIndex, answer) => {
     setAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
@@ -27,7 +32,6 @@ const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
     const favoriteActorsDirectorsIndex = recommendationQuestions.findIndex(
       (question) => question.question === "Favorite actors and directors?"
     );
-    console.log({ favoriteActorsDirectorsIndex });
 
     // Update the answers state with the new inputData
     setAnswers((prevAnswers) => {
@@ -48,7 +52,6 @@ const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
   };
 
   const handleInputChange = (stepIndex, value) => {
-    console.log("XXXXX", { value });
     setAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
       newAnswers[stepIndex].selectedAnswers = [value];

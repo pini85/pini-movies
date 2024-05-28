@@ -9,7 +9,7 @@ export const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   /* padding-top: 8rem; */
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.9);
 
   transform: perspective(0px) rotateY(0deg);
   padding: 0%, 0%;

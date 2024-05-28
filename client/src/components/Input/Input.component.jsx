@@ -3,7 +3,8 @@ import React, { forwardRef } from "react";
 import * as S from "./Input.styles";
 
 const Input = forwardRef((props, ref) => {
-  const { type, placeholder, name, handleOnChange, value, isDisabled } = props;
+  const { type, placeholder, name, handleOnChange, value, isDisabled, maxLen } =
+    props;
 
   return (
     <label htmlFor={name}>
@@ -16,6 +17,7 @@ const Input = forwardRef((props, ref) => {
         id={name}
         placeholder={placeholder}
         onChange={(e) => handleOnChange(e, "input")}
+        maxlength="10"
       />
     </label>
   );

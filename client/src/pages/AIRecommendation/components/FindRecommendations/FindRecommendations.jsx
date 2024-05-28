@@ -5,12 +5,6 @@ import Step from "./components/Step/Step";
 import { useAdvancedForm } from "pages/AdvancedSearch/context/advancedSearchFormContext";
 
 const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
-  const [inputValue, setInputValue] = useState("");
-
-  const handleInputValue = (e) => {
-    const value = e.target.value;
-    setInputValue((prev) => prev + value);
-  };
   const handleCheckboxChange = (stepIndex, answer) => {
     setAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];

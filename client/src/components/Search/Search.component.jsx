@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import { useForm, FormProvider } from 'react-hook-form';
-import useGetSuggestions from 'hooks/reactQuery/useGetSuggestions';
-import Suggestion from 'components/Suggestions/Suggestions';
-import Button from 'components/Button/Button';
-import Input from 'components/Input/Input.component';
+import { useForm, FormProvider } from "react-hook-form";
+import useGetSuggestions from "hooks/reactQuery/useGetSuggestions";
+import Suggestion from "components/Suggestions/Suggestions";
+import Button from "components/Button/Button";
+import Input from "components/Input/Input.component";
 
 const Search = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const { suggestions } = useGetSuggestions(searchQuery, true, true, 4, 2);
+  const { suggestions } = useGetSuggestions(
+    searchQuery,
+    true,
+    true,
+    4,
+    2,
+    "Acting"
+  );
 
   const methods = useForm();
 
@@ -19,12 +26,12 @@ const Search = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    setSearchQuery('');
+    setSearchQuery("");
     navigate(`/search/search/${searchQuery}/page/1`);
   };
   const container = {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   };
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -36,15 +43,18 @@ const Search = () => {
     <>
       <FormProvider {...methods}>
         <form style={container} onSubmit={handleClick}>
-          <Input
-            name="search"
-            type="search"
-            label="Search"
-            value={searchQuery}
-            handleOnChange={handleChange}
-            placeholder="Search"
-          />
-          <Button icon="search" title="search"></Button>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <Input
+              name="search"
+              type="search"
+              label="Search"
+              value={searchQuery}
+              handleOnChange={handleChange}
+              placeholder="Search"
+            />
+
+            <Button icon="search" title="search"></Button>
+          </div>
         </form>
       </FormProvider>
 

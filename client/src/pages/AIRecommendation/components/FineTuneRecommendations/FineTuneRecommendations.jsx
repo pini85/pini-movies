@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 
 import FineTuneButton from "./components/FineTuneButton/FineTuneButton";
+import Card from "components/Card/Card.tsx";
 
 const movie = {
   adult: false,
@@ -26,7 +27,7 @@ const movie = {
   vote_count: 1704,
 };
 
-const FineTuneRecommendations = () => {
+const FineTuneRecommendations = ({ children }) => {
   const [currentMovie, setCurrentMovie] = useState(movie);
   const [thumbsUpClicked, setThumbsUpClicked] = useState(false);
   const [thumbsDownClicked, setThumbsDownClicked] = useState(false);
@@ -87,7 +88,12 @@ const FineTuneRecommendations = () => {
               position: "absolute",
             }}
           >
-            <MovieCard movie={currentMovie} />
+            <Card
+              height="45rem"
+              width="35rem"
+              fromRecommendations
+              movie={currentMovie}
+            />
           </motion.div>
         </AnimatePresence>
       </S.MovieCardContainer>
@@ -99,7 +105,7 @@ const FineTuneRecommendations = () => {
           />
         </FineTuneButton>
         <FineTuneButton disabled={disabled} handleOnClick={handleSkipClick}>
-          <S.RotatingSkip startAnimation={skipClicked} />
+          <S.RotatingSkip startanimation={skipClicked} />
           {/* <Skip /> */}
         </FineTuneButton>
         <FineTuneButton disabled={disabled} handleOnClick={handleThumpsDown}>
@@ -109,6 +115,7 @@ const FineTuneRecommendations = () => {
           />
         </FineTuneButton>
       </S.ButtonContainer>
+      {children}
     </S.Container>
   );
 };

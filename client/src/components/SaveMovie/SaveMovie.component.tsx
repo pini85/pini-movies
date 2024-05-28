@@ -1,10 +1,10 @@
-import { useEffect, useState, FC } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/configureStore';
-import { useMutation, useQueryClient } from 'react-query';
-import { saveMovie, removeSavedMovie } from '../../../src/apis/constants';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import * as S from './SaveMovie.styles';
+import { useEffect, useState, FC } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/configureStore";
+import { useMutation, useQueryClient } from "react-query";
+import { saveMovie, removeSavedMovie } from "../../../src/apis/constants";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import * as S from "./SaveMovie.styles";
 
 type Props = {
   isSaved: boolean;
@@ -17,11 +17,14 @@ const SaveMovie: FC<Props> = ({ isSaved, movie, id }) => {
   const user = useSelector((state: RootState) => state.user?.user);
 
   const saveMovieMutation = useMutation((movie) => saveMovie(movie), {
-    onSuccess: () => queryClient.invalidateQueries('saved-movies', user._id),
+    onSuccess: () => queryClient.invalidateQueries("saved-movies", user._id),
   });
-  const removeMovieMutation = useMutation((id: string) => removeSavedMovie(id), {
-    onSuccess: () => queryClient.invalidateQueries('saved-movies', user._id),
-  });
+  const removeMovieMutation = useMutation(
+    (id: string) => removeSavedMovie(id),
+    {
+      onSuccess: () => queryClient.invalidateQueries("saved-movies", user._id),
+    }
+  );
 
   useEffect(() => {
     setSaved(isSaved);
@@ -49,7 +52,7 @@ const SaveMovie: FC<Props> = ({ isSaved, movie, id }) => {
     <S.Container>
       {/* {user && ( */}
       <S.Button aria-label="save" onClick={handleClick}>
-        <S.StyledFontAwesomeIcon icon={faHeart} saved={saved.toString()} />
+        <S.StyledFontAwesomeIcon icon={faHeart} saved={saved?.toString()} />
       </S.Button>
       {/* )} */}
     </S.Container>

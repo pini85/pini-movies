@@ -10,8 +10,15 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import * as S from "./Card.styles";
 import { CardProps } from "./Card.types";
 
-const Card: FC<CardProps> = ({ movie, isSaved }) => {
-  console.log(movie);
+const Card: FC<CardProps> = ({
+  movie,
+  height,
+  width,
+  fromRecommendations = false,
+  isSaved,
+}) => {
+  console.log("Card component mounted"); // Add this line
+  console.log(height, width); // Your existing log
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.user);
   const image = () => {
@@ -23,20 +30,31 @@ const Card: FC<CardProps> = ({ movie, isSaved }) => {
   };
 
   const modifyTitle = (name: string) => {
-    if (name.length > 17) {
+    const nameLength = fromRecommendations ? 30 : 17;
+    if (name.length > nameLength) {
       return name.slice(0, 16) + "...";
     }
     return name;
   };
   const handleNavigation = () => {
-    navigate(`/movie/${movie.id}`);
+    const url = `/movie/${movie.id}`;
+    if (fromRecommendations) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    } else {
+      navigate(`/movie/${movie.id}`);
+    }
   };
   const handleWatch = () => {
-    navigate(`/watch/${movie.id}`);
+    const url = `/watch/${movie.id}`;
+    if (fromRecommendations) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    } else {
+      navigate(`/watch/${movie.id}`);
+    }
   };
 
   return (
-    <S.CardContainer>
+    <S.CardContainer height={height} width={width}>
       <S.CardInner>
         <S.CardFront image={image}>
           <S.Year>
@@ -57,7 +75,9 @@ const Card: FC<CardProps> = ({ movie, isSaved }) => {
               <Button title="Watch" handleClick={handleWatch} />
             </S.ButtonContainer>
           </S.Gradient>
-          {user && <SaveMovie movie={movie} isSaved={isSaved} />}
+          {user && !fromRecommendations && (
+            <SaveMovie movie={movie} isSaved={isSaved} />
+          )}
           <S.TitleBack> {modifyTitle(movie.title)}</S.TitleBack>
         </S.CardBack>
       </S.CardInner>

@@ -37,7 +37,6 @@ const AIRecommendation = () => {
       {toggleFindRecommendations && (
         <AdvancedFormProvider dontShowChoice>
           <Modal
-            title="Personalize Recommendations"
             isToggled={toggleFindRecommendations}
             setToggled={setToggleFindRecommendations}
           >

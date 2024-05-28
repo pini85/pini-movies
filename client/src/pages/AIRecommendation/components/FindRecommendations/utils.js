@@ -43,6 +43,12 @@ export const recommendationQuestions = [
     ],
   },
   {
+    question: "Do you like this movie?",
+    answers: [
+      { type: "component", content: "FineTuneRecommendations", value: null },
+    ],
+  },
+  {
     question: "What is the occasion?",
     answers: [
       {
@@ -93,5 +99,11 @@ export const recommendationQuestions = [
   {
     question: "Favorite actors and directors?",
     answers: [{ type: "cast-input", value: [{ actors: [], directors: [] }] }],
+  },
+  {
+    question: "Do you like this movie?",
+    answers: [
+      { type: "component", content: "FineTuneRecommendations", value: null },
+    ],
   },
 ];

@@ -2,13 +2,11 @@ import React from "react";
 import * as S from "./DisplayPersonalizedRecommendations.styles";
 
 const DisplayPersonalizedRecommendations = ({ answers }) => {
-  console.log({ answers });
   const displaySearchResults = () => {
     return answers.map((answer, index) => {
       let value;
       let questionTitle = answer.question.replace(/\?$/, "");
       if (questionTitle === "Favorite actors and directors") {
-        console.log({ answer });
         const actors = answer.selectedAnswers.actors?.casts.length
           ? answer.selectedAnswers.actors.casts.map((cast) => (
               <div key={cast.id}>{cast.name}</div>

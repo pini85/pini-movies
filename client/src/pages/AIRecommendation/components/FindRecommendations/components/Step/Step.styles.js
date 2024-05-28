@@ -25,7 +25,7 @@ export const AnswersContainer = styled.div`
   flex-wrap: wrap;
   /* justify-content: center; */
   gap: 3rem;
-  margin-bottom: 5rem;
+  margin-bottom: ${(props) => (props.isFinetuneRecommendation ? "" : "5rem")};
 `;
 
 export const Header = styled.h2`
@@ -56,4 +56,5 @@ export const SelectorContainer = styled.div`
 
 export const ComponentContainer = styled.div`
   margin: 1rem;
+  width: ${(props) => props.movieRecommendation && "90vw"};
 `;

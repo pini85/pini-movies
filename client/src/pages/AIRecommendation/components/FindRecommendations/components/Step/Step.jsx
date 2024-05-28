@@ -54,8 +54,6 @@ const Step = ({
   handleCheckboxChange,
   handleInputChange,
   handleEmotionChange,
-  handleInputChange,
-  inputValue,
   closeModal,
 }) => {
   const {

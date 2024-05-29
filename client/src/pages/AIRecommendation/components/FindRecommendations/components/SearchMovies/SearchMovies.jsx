@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import useGetSuggestions from "hooks/reactQuery/useGetSuggestions";
-import Suggestion from "components/Suggestions/Suggestions";
 import Input from "components/Input/Input.component";
 import CastSuggestion from "components/CastSuggestion/CastSuggestion.component";
-import * as S from "./searchMovies.styles";
+import * as S from "./SearchMovies.styles";
 const SearchMovies = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  // searchQuery, showMovies, showCast, moviesNumber, castNumber, type;
   const { suggestions } = useGetSuggestions(
     searchQuery,
     true,

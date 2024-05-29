@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container } from './CastSuggestion.styles';
+import React from "react";
+import { Container } from "./CastSuggestion.styles";
 const CastSuggestion = ({ name, cb }) => {
   const handleClick = (e) => {
     cb(e.target.innerText);

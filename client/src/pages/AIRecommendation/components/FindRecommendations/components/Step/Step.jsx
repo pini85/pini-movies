@@ -8,42 +8,19 @@ import HappyEmotion from "../HappyEmotion/HappyEmotion";
 import NeutralEmotion from "../NeutralEmotion/NeutralFace";
 import SadEmotion from "../SadEmotion/SadEmotion";
 import ActorInput from "pages/AdvancedSearch/components/FormInput/Inputs/ActorInput";
+import SearchMovies from "../SearchMovies/SearchMovies";
 import DirectorInput from "pages/AdvancedSearch/components/FormInput/Inputs/DirectorInput";
 import Input from "components/Input/Input.component";
 import SelectInput from "components/SelectInput/SelectInput.component";
 import FineTuneRecommendations from "pages/AIRecommendation/components/FineTuneRecommendations/FineTuneRecommendations";
 import CategoryTitle from "components/CategoryTitle/CategoryTitle.component";
 
-const useWindowDimensions = () => {
-  const [windowDimensions, setWindowDimensions] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  return windowDimensions;
-};
-
 // Map component names to components
 const componentMap = {
   HappyEmotion,
   NeutralEmotion,
   SadEmotion,
+  SearchMovies,
   FineTuneRecommendations,
 };
 
@@ -66,8 +43,7 @@ const Step = ({
   } = useWizard();
   console.log({ question });
   const isFinetuneRecommendation = question === "Do you like this movie?";
-  const { width, height } = useWindowDimensions();
-  console.log({ width, height });
+
   return (
     <S.Container>
       <CategoryTitle title={question} />

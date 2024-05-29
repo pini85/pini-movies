@@ -43,10 +43,8 @@ export const recommendationQuestions = [
     ],
   },
   {
-    question: "Do you like this movie?",
-    answers: [
-      { type: "component", content: "FineTuneRecommendations", value: null },
-    ],
+    question: "What similar movies do you like?",
+    answers: [{ type: "component", content: "SearchMovies", value: [] }],
   },
   {
     question: "What is the occasion?",

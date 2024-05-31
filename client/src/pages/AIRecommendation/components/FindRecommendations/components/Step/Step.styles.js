@@ -23,7 +23,7 @@ export const AnswersContainer = styled.div`
   flex-direction: ${(props) => (props.occasionQuestion ? "column" : "row")};
   align-items: ${(props) => (props.occasionQuestion ? "flex-start" : "center")};
   flex-wrap: wrap;
-  /* justify-content: center; */
+  justify-content: center;
   gap: 3rem;
   margin-bottom: ${(props) => (props.isFinetuneRecommendation ? "" : "5rem")};
 `;

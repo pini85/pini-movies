@@ -14,6 +14,7 @@ import Input from "components/Input/Input.component";
 import SelectInput from "components/SelectInput/SelectInput.component";
 import FineTuneRecommendations from "pages/AIRecommendation/components/FineTuneRecommendations/FineTuneRecommendations";
 import CategoryTitle from "components/CategoryTitle/CategoryTitle.component";
+import IconGenre from "../IconGenre/IconGenre";
 
 // Map component names to components
 const componentMap = {
@@ -31,6 +32,7 @@ const Step = ({
   handleCheckboxChange,
   handleInputChange,
   handleEmotionChange,
+  handleIconClick,
   closeModal,
 }) => {
   const {
@@ -42,7 +44,10 @@ const Step = ({
     stepCount,
   } = useWizard();
   console.log({ question });
+  console.log({ activeStep });
   const isFinetuneRecommendation = question === "Do you like this movie?";
+  const isOccasion = question === "What is the occasion?";
+  console.log({ isOccasion });
 
   return (
     <S.Container>
@@ -83,6 +88,17 @@ const Step = ({
                   </Component>
                 </S.ComponentContainer>
               );
+            case "icon":
+              return (
+                <IconGenre
+                  isOccasion={isOccasion}
+                  key={index}
+                  iconValue={answer.value}
+                  iconName={answer.content}
+                  callback={() => handleIconClick(activeStep, answer.value)}
+                  isSelected={selectedAnswers.includes(answer.value)}
+                />
+              );
             case "checkbox":
               return (
                 <S.CheckBoxContainer key={index}>
@@ -90,6 +106,7 @@ const Step = ({
                     label={answer.content}
                     checked={selectedAnswers.includes(answer.value)}
                     onChange={() => handleCheckboxChange(answer.value)}
+                    icon={answer?.icon}
                   />
                 </S.CheckBoxContainer>
               );

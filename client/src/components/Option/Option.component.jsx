@@ -1,11 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import * as S from './Option.styles';
+import * as S from "./Option.styles";
 
-const Option = ({ handleOnClick, index, isActive, title }) => {
+const Option = ({
+  handleOnClick,
+  index,
+  isActive,
+  width,
+
+  children,
+}) => {
   return (
-    <S.Container isActive={isActive} onClick={() => handleOnClick(index)}>
-      {title}
+    <S.Container
+      width={width}
+      isActive={isActive}
+      onClick={() => handleOnClick(index)}
+    >
+      {children}
     </S.Container>
   );
 };

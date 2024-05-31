@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Wizard } from "react-use-wizard";
-import { recommendationQuestions } from "./utils";
 import Step from "./components/Step/Step";
+import { recommendationQuestions } from "./utils";
 import { useAdvancedForm } from "pages/AdvancedSearch/context/advancedSearchFormContext";
 
 const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
@@ -19,15 +19,14 @@ const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
       return newAnswers;
     });
   };
+
   const { inputData } = useAdvancedForm();
 
   useEffect(() => {
-    // Find the index of the question that deals with favorite actors or directors
     const favoriteActorsDirectorsIndex = recommendationQuestions.findIndex(
       (question) => question.question === "Favorite actors and directors?"
     );
 
-    // Update the answers state with the new inputData
     setAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
       if (favoriteActorsDirectorsIndex !== -1) {
@@ -36,6 +35,23 @@ const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
       return newAnswers;
     });
   }, [inputData, setAnswers]);
+
+  const handleIconClick = (stepIndex, value) => {
+    console.log({ stepIndex, value });
+    console.log(answers[stepIndex]);
+    setAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      const selectedAnswers = newAnswers[stepIndex].selectedAnswers;
+      if (answers[stepIndex].selectedAnswers.includes(value)) {
+        newAnswers[stepIndex].selectedAnswers = selectedAnswers.filter(
+          (name) => name !== value
+        );
+      } else {
+        newAnswers[stepIndex].selectedAnswers.push(value);
+      }
+      return newAnswers;
+    });
+  };
 
   const handleEmotionChange = (stepIndex, value) => {
     setAnswers((prevAnswers) => {
@@ -66,6 +82,7 @@ const FindRecommendations = ({ closeModal, answers, setAnswers }) => {
             handleInputChange(index, value.target.value)
           }
           handleEmotionChange={(value) => handleEmotionChange(index, value)}
+          handleIconClick={handleIconClick}
           closeModal={closeModal}
         />
       ))}

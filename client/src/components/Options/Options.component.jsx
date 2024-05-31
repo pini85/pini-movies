@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import Option from 'components/Option/Option.component';
-import * as S from './Options.styles';
+import Option from "components/Option/Option.component";
+import * as S from "./Options.styles";
 
 const Options = ({ setOption, options, activeIndex }) => {
   const renderOptions = () => {
@@ -13,7 +13,9 @@ const Options = ({ setOption, options, activeIndex }) => {
           title={option.title}
           index={index}
           handleOnClick={setOption}
-        />
+        >
+          {option.title}
+        </Option>
       );
     });
   };

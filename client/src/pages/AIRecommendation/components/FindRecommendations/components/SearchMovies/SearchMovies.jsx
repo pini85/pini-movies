@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useGetSuggestions from "hooks/reactQuery/useGetSuggestions";
 import Input from "components/Input/Input.component";
 import CastSuggestion from "components/CastSuggestion/CastSuggestion.component";
 import * as S from "./SearchMovies.styles";
-const SearchMovies = () => {
+const SearchMovies = ({ icon }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { suggestions } = useGetSuggestions(
     searchQuery,
@@ -40,6 +41,7 @@ const SearchMovies = () => {
 
   return (
     <S.Container>
+      <FontAwesomeIcon icon={icon} size="2x" />
       <Input
         name="search"
         type="search"

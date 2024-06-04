@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as S from "./Step.styles";
 import Button from "components/Button/Button";
 import Checkbox from "components/CheckBox/CheckBox";
@@ -15,7 +16,10 @@ import SelectInput from "components/SelectInput/SelectInput.component";
 import FineTuneRecommendations from "pages/AIRecommendation/components/FineTuneRecommendations/FineTuneRecommendations";
 import CategoryTitle from "components/CategoryTitle/CategoryTitle.component";
 import IconGenre from "../IconGenre/IconGenre";
-
+import {
+  faMagnifyingGlassChart,
+  faHeartCirclePlus,
+} from "@fortawesome/free-solid-svg-icons";
 // Map component names to components
 const componentMap = {
   HappyEmotion,
@@ -23,6 +27,10 @@ const componentMap = {
   SadEmotion,
   SearchMovies,
   FineTuneRecommendations,
+};
+const iconMap = {
+  SearchMovies: faMagnifyingGlassChart,
+  favorite: faHeartCirclePlus,
 };
 
 const Step = ({
@@ -43,11 +51,8 @@ const Step = ({
     activeStep,
     stepCount,
   } = useWizard();
-  console.log({ question });
-  console.log({ activeStep });
   const isFinetuneRecommendation = question === "Do you like this movie?";
   const isOccasion = question === "What is the occasion?";
-  console.log({ isOccasion });
 
   return (
     <S.Container>
@@ -61,6 +66,8 @@ const Step = ({
         occasionQuestion={question === "What is the occasion?"}
       >
         {answers.map((answer, index) => {
+          const icon = iconMap[answer.content];
+          console.log({ icon });
           switch (answer.type) {
             case "component":
               const Component = componentMap[answer.content];
@@ -71,16 +78,19 @@ const Step = ({
                   movieRecommendation={isFinetuneRecommendation}
                 >
                   <Component
+                    icon={icon}
                     handleClick={handleEmotionChange}
                     selectedAnswers={selectedAnswers}
                   >
                     <S.ButtonContainer>
                       <Button
+                        width="16rem"
                         disabled={isFirstStep}
                         title="Previous Step"
                         handleClick={previousStep}
                       />
                       <Button
+                        width="16rem"
                         title={isLastStep ? "Get movies" : "Next Step"}
                         handleClick={isLastStep ? closeModal : nextStep}
                       />
@@ -112,20 +122,25 @@ const Step = ({
               );
             case "cast-input":
               return (
-                <S.InputContainer key={index}>
-                  <DirectorInput width="18rem" />
-                  <ActorInput width="18rem" />
-                </S.InputContainer>
+                <S.CastContainer>
+                  <FontAwesomeIcon icon={icon} size="2x" />
+                  <S.InputContainer key={index}>
+                    <DirectorInput width="18rem" />
+                    <ActorInput width="18rem" />
+                  </S.InputContainer>
+                </S.CastContainer>
               );
             case "input":
               return (
-                <S.InputContainer key={index}>
-                  <Input
-                    placeholder={answer.content}
-                    label={answer.content}
-                    maxLen={1}
-                  />
-                </S.InputContainer>
+                <>
+                  <S.InputContainer key={index}>
+                    <Input
+                      placeholder={answer.content}
+                      label={answer.content}
+                      maxLen={1}
+                    />
+                  </S.InputContainer>
+                </>
               );
             case "selector":
               return (
@@ -152,11 +167,13 @@ const Step = ({
       {!isFinetuneRecommendation && (
         <S.ButtonContainer>
           <Button
+            width="16rem"
             disabled={isFirstStep}
             title="Previous Step"
             handleClick={previousStep}
           />
           <Button
+            width="16rem"
             title={isLastStep ? "Get movies" : "Next Step"}
             handleClick={isLastStep ? closeModal : nextStep}
           />

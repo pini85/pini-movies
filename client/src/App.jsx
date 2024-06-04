@@ -16,6 +16,7 @@ const App = () => {
   const userId = useSelector((state) => state.user?.user?._id);
   const dispatch = useDispatch();
   const { data: user } = useQuery("currentUser", currentUser, {
+    retryOnMount: false,
     enabled: !!authToken,
   });
 

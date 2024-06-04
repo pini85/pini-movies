@@ -58,3 +58,14 @@ export const ComponentContainer = styled.div`
   margin: 1rem;
   width: ${(props) => props.movieRecommendation && "90vw"};
 `;
+export const CastContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & > svg {
+    color: var(--primary-color);
+    height: 10rem;
+    margin-bottom: 4rem;
+  }
+`;

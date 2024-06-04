@@ -10,6 +10,7 @@ export const ButtonContainer = styled.button<Props>`
   text-transform: capitalize;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: ${({ padding }) => (padding ? padding : "1rem 2.5rem")};
   margin: ${(props) => props.margin && props.margin};
   width: ${(props) => props.width && props.width};

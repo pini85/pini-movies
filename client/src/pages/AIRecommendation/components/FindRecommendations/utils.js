@@ -47,7 +47,8 @@ export const recommendationQuestions = [
     ],
   },
   {
-    question: "What similar movies do you like?",
+    question: "What similar movies do you want to see?",
+    svg: "glass-chart",
     answers: [{ type: "component", content: "SearchMovies", value: [] }],
   },
   {
@@ -100,7 +101,13 @@ export const recommendationQuestions = [
 
   {
     question: "Favorite actors and directors?",
-    answers: [{ type: "cast-input", value: [{ actors: [], directors: [] }] }],
+    answers: [
+      {
+        type: "cast-input",
+        content: "favorite",
+        value: [{ actors: [], directors: [] }],
+      },
+    ],
   },
   {
     question: "Do you like this movie?",
